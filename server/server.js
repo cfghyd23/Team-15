@@ -21,7 +21,7 @@ const UserRouter= require('./routes/UserRoutes');
 const CaretakerRouter= require('./routes/CaretakerRoutes');
 
 app.use('/api/v1/user', UserRouter);
-app.use('api/v1/Caretaker', CaretakerRouter);
+app.use('api/v1/caretaker', CaretakerRouter);
 
 app.listen(3402, () => {
     console.log(`Server up and running on PORT 3402`);
