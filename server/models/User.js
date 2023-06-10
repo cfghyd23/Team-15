@@ -28,10 +28,10 @@ const UserSchema= new mongoose.Schema({
         type: Number,
         required: true
     },
-    // careTaker: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Caretaker'
-    // },
+    careTaker: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Caretaker'
+    },
     Residence: {
         type: String,
         required: true
