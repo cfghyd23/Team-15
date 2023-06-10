@@ -45,6 +45,10 @@ const UserSchema= new mongoose.Schema({
     }, 
     Employment: {
         type: String
+    },
+    Health:{
+        type:String,
+        enum:['Well','Not-Well']
     }
 });
 
