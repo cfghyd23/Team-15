@@ -1,4 +1,5 @@
 const Caretaker = require('../models/Caretaker');
+const jwt = require("jsonwebtoken");
 
 // Get all caretakers
 const getAllCaretakers = async (req, res) => {
@@ -69,10 +70,41 @@ const deleteCaretaker = async (req, res) => {
   }
 };
 
+// Login Caretaker
+const loginCaretaker = async (req, res) => {
+    const { email, password } = req.body;
+  
+    try {
+      // Find the caretaker by email
+      const caretaker = await Caretaker.findOne({ email });
+      if (!caretaker) {
+        return res.status(404).json({ message: 'Caretaker not found' });
+      }
+  
+      // Compare the provided password with the stored password
+      const isPasswordMatched = await bcrypt.compare(password, caretaker.password);
+      if (!isPasswordMatched) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+  
+      // Generate a JWT token
+      const token = jwt.sign(
+        { caretakerId: caretaker._id },
+        'your-secret-key',
+        { expiresIn: '1h' }
+      );
+  
+      res.json({ token });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+
 module.exports = {
   getAllCaretakers,
   getCaretakerById,
   createCaretaker,
   updateCaretaker,
-  deleteCaretaker
+  deleteCaretaker,
+  loginCaretaker
 };
