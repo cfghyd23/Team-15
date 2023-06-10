@@ -1,11 +1,11 @@
-// const express= require('express');
-// const cors= require('cors');
+const express= require('express');
+const cors= require('cors');
 
-// const app= express();
+const app= express();
 
-// app.use(express.json());
-// app.use(cors());
+app.use(express.json());
+app.use(cors());
 
-// app.listen(3402, () => {
-//     console.log(`Server up and running on PORT 3402`);
-// })
+app.listen(3402, () => {
+    console.log(`Server up and running on PORT 3402`);
+})
