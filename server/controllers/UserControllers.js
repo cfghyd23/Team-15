@@ -40,7 +40,6 @@ const createUser = async (req, res) => {
     City,
     Education,
     Employment,
-    Health
   } = req.body;
   try {
     const newUser = new User({
@@ -55,7 +54,6 @@ const createUser = async (req, res) => {
       City,
       Education,
       Employment,
-      Health
     });
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
@@ -79,7 +77,6 @@ const updateUser = async (req, res) => {
     City,
     Education,
     Employment,
-    Health
   } = req.body;
   try {
     const user = await User.findByIdAndUpdate(
@@ -96,7 +93,7 @@ const updateUser = async (req, res) => {
         City,
         Education,
         Employment,
-        Health
+
       },
       { new: true }
     );
