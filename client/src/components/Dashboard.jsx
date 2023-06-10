@@ -3,8 +3,6 @@ import Data from './Data'
 import Details from './Details'
 import { Link, Navigate, Routes, useNavigate ,Route} from "react-router-dom";
 
-
-
 export default function Dashboard() {
 
     const navigate=useNavigate()
@@ -14,6 +12,8 @@ export default function Dashboard() {
 
   return (
     <div>
+      
+
 <div className="container my-5 align-items-center">
   <h2>Student Details</h2>
   <br/>
