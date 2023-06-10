@@ -1,32 +1,34 @@
 const User = require('../models/User');
+const Caretaker= require('../models/Caretaker');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 // Get all users
-const getAllUsers = async (req, res) => {
-  try {
-    const users = await User.find();
-    res.json(users);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
+// const getAllUsers = async (req, res) => {
+//   try {
+//     const users = await User.find();
+//     res.json(users);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// };
 
 // Get a single user by ID
-const getUserById = async (req, res) => {
-  const { userId } = req.params;
+const getUserById= async (req, res) => {
+  const { id }= req.params;
   try {
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+    const fetchedUser= await User.findById(id);
+    if (!fetchedUser) {
+      return res.status(400).json({ message: 'User not found' });
     }
-    res.json(user);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
 
-// Create a new user
+    res.status(200).json(fetchedUser);
+  } catch (err) {
+    res.status(400).json({ message: err.message })
+  }
+}
+
+
+// // Create a new user
 const createUser = async (req, res) => {
   const {
     name,
@@ -42,33 +44,39 @@ const createUser = async (req, res) => {
     Employment
   } = req.body;
   try {
+    const hashed= await bcrypt.hash(password, 10);
+    const myCaretaker= await Caretaker.findOne({ name: careTaker });
+    
     const newUser = new User({
       name,
       email,
-      password,
+      password: hashed,
       dob,
       ageType,
       aadhaar,
-      careTaker,
+      careTaker: myCaretaker._id,
       Residence,
       City,
       Education,
       Employment
     });
+    
     const savedUser = await newUser.save();
+    myCaretaker.users.push(savedUser._id);
+    myCaretaker.save();
+
     res.status(201).json(savedUser);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
 
-// Update a user
+// // Update a user
 const updateUser = async (req, res) => {
-  const { userId } = req.params;
+  const { id } = req.params;
   const {
     name,
     email,
-    password,
     dob,
     ageType,
     aadhaar,
@@ -80,11 +88,10 @@ const updateUser = async (req, res) => {
   } = req.body;
   try {
     const user = await User.findByIdAndUpdate(
-      userId,
+      id,
       {
         name,
         email,
-        password,
         dob,
         ageType,
         aadhaar,
@@ -96,48 +103,40 @@ const updateUser = async (req, res) => {
       },
       { new: true }
     );
+
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+
     res.json(user);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
 
+// // Login a user
+const loginUser= async (req, res) => {
+  const {email, password}= req.body;
 
-// Login a user
-const loginUser = async (req, res) => {
-    const { email, password } = req.body;
-  
-    try {
-      // Find the user by email
-      const user = await User.findOne({ email });
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-  
-      // Compare the provided password with the stored password
-      const isPasswordMatched = await bcrypt.compare(password, user.password);
-      if (!isPasswordMatched) {
-        return res.status(401).json({ message: 'Invalid credentials' });
-      }
-  
-      // Generate a JWT token
-      const token = jwt.sign(
-        { userId: user._id },
-        'your-secret-key',
-        { expiresIn: '1h' }
-      );
-  
-      res.json({ token });
-    } catch (err) {
-      res.status(500).json({ message: err.message });
+  try {
+    const existingUser= await User.findOne({email});
+    if (!existingUser) {
+      res.status(400).json('User does not exist. Better sign up');
     }
-  };
+
+    const isPasswordMatched= await bcrypt.compare(password, existingUser.password);
+    if (!isPasswordMatched) {
+      res.status(400).json('Email / Password Not Matched.');
+    }
+
+    res.json(existingUser);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
 
 module.exports = {
-  getAllUsers,
+  // getAllUsers,
   getUserById,
   createUser,
   updateUser,

@@ -1,22 +1,23 @@
 const Caretaker = require('../models/Caretaker');
+const bcrypt= require('bcrypt');
 const User = require('../models/User');
 const jwt = require("jsonwebtoken");
 
-// Get all caretakers
-const getAllCaretakers = async (req, res) => {
-  try {
-    const caretakers = await Caretaker.find();
-    res.json(caretakers);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
 // Get all users
 const getAllUsers = async (req, res) => {
+  const { id }= req.params;
     try {
-      const users = await User.find();
-      res.json(users);
+      const caretaker = await Caretaker.findById(id);
+      const myUsers= [];
+
+      for (const userId of caretaker.users) {
+        const user= await User.findById(userId);
+        if (user) {
+          myUsers.push(user);
+        }
+      }
+
+      res.json(myUsers);
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
@@ -25,9 +26,9 @@ const getAllUsers = async (req, res) => {
 
 // Get a single caretaker by ID
 const getCaretakerById = async (req, res) => {
-  const { caretakerId } = req.params;
+  const { id } = req.params;
   try {
-    const caretaker = await Caretaker.findById(caretakerId);
+    const caretaker = await Caretaker.findById(id);
     if (!caretaker) {
       return res.status(404).json({ message: 'Caretaker not found' });
     }
@@ -41,7 +42,7 @@ const getCaretakerById = async (req, res) => {
 const createCaretaker = async (req, res) => {
   const { name, email, password, homename } = req.body;
   try {
-    
+    console.log(req.body);
     const hashed= await bcrypt.hash(password, 10);
     const newCaretaker = new Caretaker({ name, email, password: hashed, homename });
 
@@ -54,32 +55,30 @@ const createCaretaker = async (req, res) => {
 
 // Update a caretaker
 const updateCaretaker = async (req, res) => {
-  const { caretakerId } = req.params;
-  const { name, email, password, homename } = req.body;
+  const { id } = req.params;
+  const {
+    name,
+    email,
+    homename,
+    users
+  } = req.body;
   try {
-    const caretaker = await Caretaker.findByIdAndUpdate(
-      caretakerId,
-      { name, email, password, homename },
+    const user = await Caretaker.findByIdAndUpdate(
+      id,
+      {
+        name,
+        email,
+        homename,
+        users
+      },
       { new: true }
     );
-    if (!caretaker) {
-      return res.status(404).json({ message: 'Caretaker not found' });
-    }
-    res.json(caretaker);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-};
 
-// Delete a caretaker
-const deleteCaretaker = async (req, res) => {
-  const { caretakerId } = req.params;
-  try {
-    const deletedCaretaker = await Caretaker.findByIdAndRemove(caretakerId);
-    if (!deletedCaretaker) {
-      return res.status(404).json({ message: 'Caretaker not found' });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
-    res.json({ message: 'Caretaker deleted' });
+
+    res.json(user);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -87,40 +86,29 @@ const deleteCaretaker = async (req, res) => {
 
 // Login Caretaker
 const loginCaretaker = async (req, res) => {
-    const { email, password } = req.body;
-  
-    try {
-      // Find the caretaker by email
-      const caretaker = await Caretaker.findOne({ email });
-      if (!caretaker) {
-        return res.status(404).json({ message: 'Caretaker not found' });
-      }
-  
-      // Compare the provided password with the stored password
-      const isPasswordMatched = await bcrypt.compare(password, caretaker.password);
-      if (!isPasswordMatched) {
-        return res.status(401).json({ message: 'Invalid credentials' });
-      }
-  
-      // Generate a JWT token
-      const token = jwt.sign(
-        { caretakerId: caretaker._id },
-        'your-secret-key',
-        { expiresIn: '1h' }
-      );
-  
-      res.json({ token });
-    } catch (err) {
-      res.status(500).json({ message: err.message });
+  const {email, password}= req.body;
+
+  try {
+    const existingUser= await Caretaker.findOne({email});
+    if (!existingUser) {
+      res.status(400).json('User does not exist. Better sign up');
     }
-  };
+
+    const isPasswordMatched= await bcrypt.compare(password, existingUser.password);
+    if (!isPasswordMatched) {
+      res.status(400).json('Email / Password Not Matched.');
+    }
+
+    res.json(existingUser);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
 module.exports = {
-  getAllCaretakers,
   getCaretakerById,
   createCaretaker,
   updateCaretaker,
-  deleteCaretaker,
   loginCaretaker,
   getAllUsers
 };
