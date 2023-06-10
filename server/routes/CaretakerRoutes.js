@@ -3,19 +3,20 @@ const caretakerController = require('../controllers/CaretakerControllers');
 
 const router = express.Router();
 
-// Get all caretakers
-router.get('/', caretakerController.getAllCaretakers);
+// get users of the caretaker.
+router.get('/myusers/:id', caretakerController.getAllUsers);
 
 // Get a single caretaker by ID
-router.get('/:caretakerId', caretakerController.getCaretakerById);
+router.get('/:id', caretakerController.getCaretakerById);
 
 // Create a new caretaker
-router.post('/', caretakerController.createCaretaker);
+router.post('/signup', caretakerController.createCaretaker);
+
+// Login in a new caretaker
+router.post('/signin', caretakerController.loginCaretaker)
 
 // Update a caretaker
-router.put('/:caretakerId', caretakerController.updateCaretaker);
+router.put('/:id', caretakerController.updateCaretaker);
 
-// Delete a caretaker
-router.delete('/:caretakerId', caretakerController.deleteCaretaker);
 
 module.exports = router;
