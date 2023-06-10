@@ -46,6 +46,10 @@ const UserSchema= new mongoose.Schema({
     }, 
     Employment: {
         type: String
+    },
+    role: {
+        type: String,
+        default: 'rhb'
     }
 });
 

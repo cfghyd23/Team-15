@@ -44,12 +44,15 @@ const chkAlert= async (req, res) => {
 const answerAlert= async (req, res) => {
     const {id}= req.params;
     try {
-        const alert= await SOS.findById(id);
-        await deleteOne(alert);
-    } catch (err) {
-        console.log(err);
-        res.status(400).json({ message: err.message});
-    }
+        const deletedSOS = await SOS.findByIdAndDelete(id);
+        if (!deletedSOS) {
+          return res.status(404).json({ message: 'SOS record not found' });
+        }
+        res.status(200).json({ message: 'SOS record deleted successfully' });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
 }
 
 module.exports= {

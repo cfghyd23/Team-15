@@ -14,10 +14,10 @@ export default function Dashboard() {
 
   return (
     <div>
-<div class="container my-5 align-items-center">
+<div className="container my-5 align-items-center">
   <h2>Student Details</h2>
   <br/>
-  <table class="table table-striped" style={{borderCollapse: "separate", borderSpacing: "10px"}}>
+  <table className="table table-striped" style={{borderCollapse: "separate", borderSpacing: "10px"}}>
     <thead>
       <tr>
         <th>Firstname</th>
@@ -32,7 +32,7 @@ export default function Dashboard() {
             <td>{item.Name}</td>
             <td>{item.mobile}</td>
             <td>{item.email}</td>
-            <button type="button" class="btn btn-success" onClick={handleclick}>View Details</button>
+            <button type="button" className="btn btn-success" onClick={handleclick}>View Details</button>
           </tr>
           </>
         ))}

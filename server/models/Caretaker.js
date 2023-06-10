@@ -21,6 +21,10 @@ const CaretakerSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    role: {
+        type: String,
+        default: 'Caretaker'
+    },
     users: {
         type: [
         {
