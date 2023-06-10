@@ -1,4 +1,5 @@
 const Caretaker = require('../models/Caretaker');
+const User = require('../models/User');
 const jwt = require("jsonwebtoken");
 
 // Get all caretakers
@@ -11,7 +12,15 @@ const getAllCaretakers = async (req, res) => {
   }
 };
 
-// Login caretaker
+// Get all users
+const getAllUsers = async (req, res) => {
+    try {
+      const users = await User.find();
+      res.json(users);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+};
 
 
 // Get a single caretaker by ID
@@ -112,5 +121,6 @@ module.exports = {
   createCaretaker,
   updateCaretaker,
   deleteCaretaker,
-  loginCaretaker
+  loginCaretaker,
+  getAllUsers
 };
