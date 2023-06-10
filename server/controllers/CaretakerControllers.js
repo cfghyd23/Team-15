@@ -1,4 +1,5 @@
 const Caretaker = require('../models/Caretaker');
+const bcrypt= require('bcrypt');
 
 // Get all caretakers
 const getAllCaretakers = async (req, res) => {
@@ -9,6 +10,9 @@ const getAllCaretakers = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// Login caretaker
+
 
 // Get a single caretaker by ID
 const getCaretakerById = async (req, res) => {
@@ -28,7 +32,10 @@ const getCaretakerById = async (req, res) => {
 const createCaretaker = async (req, res) => {
   const { name, email, password, homename } = req.body;
   try {
-    const newCaretaker = new Caretaker({ name, email, password, homename });
+    
+    const hashed= await bcrypt.hash(password, 10);
+    const newCaretaker = new Caretaker({ name, email, password: hashed, homename });
+
     const savedCaretaker = await newCaretaker.save();
     res.status(201).json(savedCaretaker);
   } catch (err) {
