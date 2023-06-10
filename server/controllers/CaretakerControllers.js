@@ -29,10 +29,11 @@ const getCaretakerById = async (req, res) => {
   const { id } = req.params;
   try {
     const caretaker = await Caretaker.findById(id);
+
     if (!caretaker) {
       return res.status(404).json({ message: 'Caretaker not found' });
     }
-    res.json(caretaker);
+
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -91,9 +92,9 @@ const loginCaretaker = async (req, res) => {
   try {
     const existingUser= await Caretaker.findOne({email});
     if (!existingUser) {
-      res.status(400).json('User does not exist. Better sign up');
+      res.status(400).json('Caretaker does not exist. Better sign up');
     }
-
+    console.log(existingUser);
     const isPasswordMatched= await bcrypt.compare(password, existingUser.password);
     if (!isPasswordMatched) {
       res.status(400).json('Email / Password Not Matched.');
@@ -101,6 +102,7 @@ const loginCaretaker = async (req, res) => {
 
     res.json(existingUser);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: err.message });
   }
 };

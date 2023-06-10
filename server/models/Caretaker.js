@@ -15,19 +15,21 @@ const CaretakerSchema = new mongoose.Schema({
     },
     password: {
         type:String,
-        required: true,
-        select:false
+        required: true
     },
     homename: {
         type: String,
         required: true,
     },
-    users: [
+    users: {
+        type: [
         {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'User'
         }
-      ]
+      ],
+      default: []
+    }
 });
 
 module.exports = mongoose.model("Caretaker", CaretakerSchema);
