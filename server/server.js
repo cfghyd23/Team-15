@@ -15,7 +15,13 @@ mongoose.connect('mongodb+srv://team15:team15cfg@clusterdb.v9gpzq8.mongodb.net/?
     console.log('Connected to the DB');
 }).catch((err) => {
     console.error(err);
-})
+});
+
+const UserRouter= require('./routes/UserRoutes');
+const CaretakerRouter= require('./routes/CaretakerRoutes');
+
+app.use('/api/v1/user', UserRouter);
+app.use('api/v1/caretaker', CaretakerRouter);
 
 app.listen(3402, () => {
     console.log(`Server up and running on PORT 3402`);
