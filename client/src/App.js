@@ -10,12 +10,12 @@ import Login from './components/Login';
 function App() {
   return (
     <Router>
-      {/* <LoginUser /> */}
+
     <div>
       <Routes>
       <Route path="/Details" element={<>
       <Navbar/>
-      
+
       <Details />
       </>} />
       <Route exact path="/Dashboard" element={
@@ -31,6 +31,7 @@ function App() {
       <Route exact path="/UserForm" element={<UserForm/>} />
 
       </Routes>
+
     </div>
     </Router>
   );

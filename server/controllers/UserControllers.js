@@ -41,7 +41,7 @@ const createUser = async (req, res) => {
     Residence,
     City,
     Education,
-    Employment
+    Employment,
   } = req.body;
   try {
     const hashed= await bcrypt.hash(password, 10);
@@ -58,7 +58,7 @@ const createUser = async (req, res) => {
       Residence,
       City,
       Education,
-      Employment
+      Employment,
     });
     
     const savedUser = await newUser.save();
@@ -84,7 +84,7 @@ const updateUser = async (req, res) => {
     Residence,
     City,
     Education,
-    Employment
+    Employment,
   } = req.body;
   try {
     const user = await User.findByIdAndUpdate(
@@ -99,7 +99,8 @@ const updateUser = async (req, res) => {
         Residence,
         City,
         Education,
-        Employment
+        Employment,
+
       },
       { new: true }
     );

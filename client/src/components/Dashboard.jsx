@@ -3,19 +3,19 @@ import Data from './Data'
 import Details from './Details'
 import { Link, Navigate, Routes, useNavigate ,Route} from "react-router-dom";
 
+
+
+
 export default function Dashboard() {
 
-
-    const navigate= useNavigate()
-    const handleclick = () => {
+    const navigate=useNavigate()
+    const handleclick = ()=>{
         navigate('/Details');
     }
 
   return (
     <div>
-      
-<div className="container my-5 align-items-center">
-  <h2>My Rainbow Home Wards</h2>
+
   <br/>
   <table className="table table-striped" style={{borderCollapse: "separate", borderSpacing: "10px"}}>
     <thead>
@@ -36,7 +36,16 @@ export default function Dashboard() {
             <td>{item.Employment}</td>
             <button type="button" className="btn btn-success" onClick={(item) => handleclick(item)}>View Details</button>
           </tr>
-          
+    
+        <>
+          <tr style={{marginBottom:"20px"}}>
+            <td>{item.Name}</td>
+            <td>{item.mobile}</td>
+            <td>{item.email}</td>
+            <button type="button" className="btn btn-success" onClick={handleclick}>View Details</button>
+          </tr>
+          </>
+
         ))}
     </tbody>
   </table>
