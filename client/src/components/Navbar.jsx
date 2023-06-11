@@ -1,6 +1,12 @@
 import React from 'react'
+import { Link, Navigate, Routes, useNavigate ,Route} from "react-router-dom";
+
 
 export default function Navbar() {
+
+  const navigate=useNavigate();
+
+
   return (
     <div>
        <nav className="navbar navbar-expand-lg bg-primary-subtle">
@@ -13,7 +19,9 @@ export default function Navbar() {
       <ul className="navbar-nav me-auto mb-2 mb-lg-0"> 
       </ul>
       <form className="d-flex" role="search">
-       <button className="btn btn-outline-success" type="submit">Logout</button>
+       <button className="btn btn-outline-success" type="submit" onClick={()=>{
+            navigate('/')
+       }}>Logout</button>
       </form>
     </div>
   </div>

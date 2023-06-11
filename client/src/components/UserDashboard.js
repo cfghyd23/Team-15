@@ -38,18 +38,20 @@ export default function UserDashboard() {
      
       </ul>
       <form className="d-flex" role="search">
-        <button className="btn btn-outline-success" type="submit">Logout</button>
+        <button className="btn btn-outline-success" type="submit" onClick={()=>{
+            navigate('/')
+       }}>Logout</button>
       </form>
     </div>
   </div>
 </nav>
-<div class="px-4 text-center">
-    <img class="d-block mx-auto" src={Avatar} alt="" width="200" height="150"/>
+<div className="px-4 text-center">
+    <img className="d-block mx-auto" src={Avatar} alt="" width="200" height="150"/>
     <h3>We rise by Lifting others!</h3>
   </div>
-  <div class="row align-items-md-stretch mt-5">
-      <div class="col-md-6">
-        <div class="h-100 p-5 text-bg-dark rounded-3">
+  <div className="row align-items-md-stretch mt-5">
+      <div className="col-md-6">
+        <div className="h-100 p-5 text-bg-dark rounded-3">
           <h2>Your Guide</h2>
           <p>FirstName: <span>V Reddy</span></p>
           <p>LastName: <span>Sainath</span></p>
@@ -58,10 +60,10 @@ export default function UserDashboard() {
           </div>
 
       </div>
-      <div class="col-md-6">
-        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+      <div className="col-md-6">
+        <div className="h-100 p-5 bg-body-tertiary border rounded-3">
           <h3>We are there throughout your thick and thin! Share your grievances here!</h3>
-          <button class="btn btn-outline-secondary mt-3" type="button" onClick={()=>{
+          <button className="btn btn-outline-secondary mt-3" type="button" onClick={()=>{
             navigate('/UserForm')
           }}>Contact Form</button>
         </div>
