@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 function SOSUser() {
   const handleClick = async () => {
     try {
-      const id = '123'; // Replace '123' with the actual value of the ID
+      // Suresh Sureshs@gmail.com Suresh
       const response = await fetch(`http://localhost:3402/api/v1/sos/send/6484e0a3c1ecbdb84e9ce595`, {
         method: 'POST'
       });
@@ -21,7 +21,7 @@ function SOSUser() {
   };
 
   return (
-    <Button className='danger' onClick={handleClick}>
+    <Button className='btn btn-danger'  onClick={handleClick}>
       SOS my Care-Taker
     </Button>
   );

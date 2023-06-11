@@ -9,7 +9,7 @@ const getAllUsers = async (req, res) => {
     try {
       const caretaker = await Caretaker.findById(id);
       const myUsers= [];
-
+      
       for (const userId of caretaker.users) {
         const user= await User.findById(userId);
         if (user) {

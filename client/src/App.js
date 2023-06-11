@@ -4,10 +4,17 @@ import Navbar from './components/Navbar'
 import UserDashboard from './components/UserDashboard';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import UserForm from './components/UserForm';
+import { LoginUser } from './components/LoginUser';
 
 function App() {
+  // const [currentForm,setCurrentForm] = useState('login');
+
+  // const toggleForm= (formName) => {
+  //   setCurrentForm(formName);
+  // }
   return (
     <Router>
+      {/* <LoginUser /> */}
     <div>
       <Routes>
       <Route exact path="/Dashboard" element={
