@@ -50,9 +50,10 @@ In summary, our website offers a comprehensive solution to address the tracking 
 <h2>My Tech Stack & Tools</h2>
 <img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg" / style="height: 40px; width: 30px;">
 <img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" / style="height: 40px; width: 30px;">
+<img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain-wordmark.svg" / style="height: 40px; width: 30px;">
 <img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" / style="height: 40px; width: 30px;">
 <img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" / style="height: 40px; width: 30px;">
-<img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain-wordmark.svg" / style="height: 40px; width: 30px;">
+<img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" / style="height: 40px; width: 30px;">
 <img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" / style="height: 40px; width: 30px;">
 <img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" / style="height: 40px; width: 30px;">
 <img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" / style="height: 40px; width: 30px;">
