@@ -40,9 +40,9 @@ export default function UserDashboard() {
 
       <SOSUser />
 
-      <form className="ms-2 d-flex" role="search">
-        <button className="btn btn-outline-danger" type="submit">Logout</button>
-      </form>
+      <button className="btn btn-outline-danger mr-2" type="submit" onClick={()=>{
+            navigate('/')
+       }}>Logout</button>
     </div>
   </div>
 </nav>

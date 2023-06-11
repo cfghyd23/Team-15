@@ -5,6 +5,7 @@ import { Link, Navigate, Routes, useNavigate ,Route} from "react-router-dom";
 
 export default function Dashboard() {
 
+
     const navigate= useNavigate()
     const handleclick = () => {
         navigate('/Details');
