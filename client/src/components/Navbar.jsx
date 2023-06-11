@@ -19,7 +19,8 @@ export default function Navbar() {
       <ul className="navbar-nav me-auto mb-2 mb-lg-0"> 
       </ul>
       <form className="d-flex" role="search">
-       <button className="btn btn-outline-success" type="submit" onClick={()=>{
+
+       <button className="btn btn-outline-danger mr-2" type="submit" onClick={()=>{
             navigate('/')
        }}>Logout</button>
       </form>

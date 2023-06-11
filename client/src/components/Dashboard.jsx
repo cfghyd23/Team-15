@@ -5,6 +5,7 @@ import { Link, Navigate, Routes, useNavigate ,Route} from "react-router-dom";
 
 
 
+
 export default function Dashboard() {
 
     const navigate=useNavigate()
@@ -14,19 +15,28 @@ export default function Dashboard() {
 
   return (
     <div>
-<div className="container my-5 align-items-center">
-  <h2>Student Details</h2>
+
   <br/>
   <table className="table table-striped" style={{borderCollapse: "separate", borderSpacing: "10px"}}>
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
+        <th>Name</th>
         <th>Email</th>
+        <th>Education</th>
+        <th>Employment</th>
       </tr>
     </thead>
     <tbody>
     {Data.map((item) => (
+      
+          <tr key={item.email} style={{marginBottom:"20px"}}>
+            <td>{item.name}</td>
+            <td>{item.email}</td>
+            <td>{item.Education}</td>
+            <td>{item.Employment}</td>
+            <button type="button" className="btn btn-success" onClick={(item) => handleclick(item)}>View Details</button>
+          </tr>
+    
         <>
           <tr style={{marginBottom:"20px"}}>
             <td>{item.Name}</td>
@@ -35,6 +45,7 @@ export default function Dashboard() {
             <button type="button" className="btn btn-success" onClick={handleclick}>View Details</button>
           </tr>
           </>
+
         ))}
     </tbody>
   </table>

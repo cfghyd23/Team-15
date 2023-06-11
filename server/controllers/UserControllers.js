@@ -46,7 +46,7 @@ const createUser = async (req, res) => {
   try {
     const hashed= await bcrypt.hash(password, 10);
     const myCaretaker= await Caretaker.findOne({ name: careTaker });
-    
+    console.log(myCaretaker._id);
     const newUser = new User({
       name,
       email,

@@ -10,10 +10,12 @@ import Login from './components/Login';
 function App() {
   return (
     <Router>
+
     <div>
       <Routes>
       <Route path="/Details" element={<>
       <Navbar/>
+
       <Details />
       </>} />
       <Route exact path="/Dashboard" element={
