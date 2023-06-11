@@ -55,5 +55,6 @@ In summary, our website offers a comprehensive solution to address the tracking 
 <img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain-wordmark.svg" / style="height: 40px; width: 30px;">
 <img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" / style="height: 40px; width: 30px;">
 <img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" / style="height: 40px; width: 30px;">
+<img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" / style="height: 40px; width: 30px;">
 <img align="left"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" / style="height: 40px; width: 30px;">
 </hr>
