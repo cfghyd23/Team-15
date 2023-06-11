@@ -1,0 +1,27 @@
+.bg-purple {
+    background-color: #6f42c1;
+}
+
+.rounded {
+    border-radius: var(--bs-border-radius)!important;
+}
+.text-white {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-white-rgb),var(--bs-text-opacity))!important;
+}
+.p-3 {
+    padding: 1rem!important;
+}
+.my-3 {
+    margin-top: 1rem!important;
+    margin-bottom: 1rem!important;
+}
+.align-items-center {
+    align-items: center!important;
+}
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+.d-flex {
+    display: flex!important;
+}
