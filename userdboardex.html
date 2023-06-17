@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rainbow Foundation Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="style1.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Rainbow Foundation Dashboard</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Progress</a></li>
+        <li><a href="#">Employment</a></li>
+        <li><a href="#">Well-being</a></li>
+        <li><a href="#">Needs</a></li>
+      </ul>
+    </nav>
+    <section>
+      <h2>Welcome to your Dashboard!</h2>
+      <p>Here you can track your progress, employment status, well-being, and other needs.</p>
+      <!-- Dashboard content goes here -->
+      <p>Here are your Admin Details</p>
+    </section>
+    <footer>
+      <p>&copy; 2023 Rainbow Foundation</p>
+    </footer>
+  </div>
+
+  <!-- User Login Modal -->
+  <div id="user-login-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>User Login</h2>
+      <form>
+        <!-- User login form fields go here -->
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Login Modal -->
+  <div id="admin-login-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Admin Login</h2>
+      <form>
+        <!-- Admin login form fields go here -->
+      </form>
+    </div>
+  </div>
+
+  <script >
+    // Get the user login modal
+var userLoginModal = document.getElementById("user-login-modal");
+
+// Get the admin login modal
+var adminLoginModal = document.getElementById("admin-login-modal");
+
+// Get the close buttons for the modals
+var closeButtons = document.getElementsByClassName("close");
+
+// Function to open the user login modal
+function openUserLoginModal() {
+  userLoginModal.style.display = "block";
+}
+
+// Function to open the admin login modal
+function openAdminLoginModal() {
+  adminLoginModal.style.display = "block";
+}
+
+// Function to close the modals
+function closeModal() {
+  userLoginModal.style.display = "none";
+  adminLoginModal.style.display = "none";
+}
+
+// Event listeners for opening the modals
+document.getElementById("user-login-link").addEventListener("click", openUserLoginModal);
+document.getElementById("admin-login-link").addEventListener("click", openAdminLoginModal);
+
+// Event listener for closing the modals
+for (var i = 0; i < closeButtons.length; i++) {
+  closeButtons[i].addEventListener("click", closeModal);
+}
+  </script>
+</body>
+</html>
